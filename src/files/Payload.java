@@ -20,7 +20,7 @@ public class Payload {
 				+ "\r\n"
 				+ "    \"phone_number\":\"(+91) 983 893 3937\",\r\n"
 				+ "\r\n"
-				+ "    \"address\" : \"29, side layout, cohen 09\",\r\n"
+				+ "    \"address\" : \"71 Summer Walk, USA\",\r\n"
 				+ "\r\n"
 				+ "    \"types\": [\"shoe park\",\"shop\"],\r\n"
 				+ "\r\n"

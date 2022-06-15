@@ -44,14 +44,30 @@ public class Basics2 {
 		
 		//Update Place
 		
+		String newAddress = "71 Summer Walk, USA";
+		
 		given().log().all().queryParam("key", "qaclick123").header("Content-Type","application/json")
 		.body("{\r\n"
 				+ "    \"place_id\":\""+placeId+"\",\r\n"
-				+ "    \"address\":\"70 Summer walk, USA\",\r\n"
+				+ "    \"address\":\""+newAddress+"\",\r\n"
 				+ "    \"key\":\"qaclick123\"\r\n"
 				+ "}")
 		.when().put("maps/api/place/update/json")
 		.then().assertThat().log().all().statusCode(200).body("msg", equalTo("Address successfully updated"));
+		
+		//Get Place
+		//For Get Method we are not sending any body,no header only focus is on Url and query param
+		
+		String getPlaceResponse = given().log().all().queryParam("key", "qaclick123")
+		.queryParam("place_id", placeId)
+		.when().get("maps/api/place/get/json")
+		.then().assertThat().log().all().statusCode(200).extract().response().asString();
+		
+		JsonPath js1 = new JsonPath(getPlaceResponse);
+		String actualAddress = js1.getString("address");
+		System.out.println(actualAddress);
+		
+		//compare actualAddress and newAddress value with Assertion
 	}
 
 }
