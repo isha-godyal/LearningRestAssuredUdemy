@@ -54,10 +54,14 @@ public class Payload {
 				+ "				    \"title\":\"RPA\",\r\n"
 				+ "				    \"price\": 45,\r\n"
 				+ "				    \"copies\": 10\r\n"
-				+ "				}\r\n"
+				+ "				},\r\n"
+				+ "                {\r\n"
+				+ "				    \"title\":\"Appium\",\r\n"
+				+ "				    \"price\": 55,\r\n"
+				+ "				    \"copies\": 9\r\n"
+				+ "				}  \r\n"
 				+ "				]\r\n"
-				+ "				}\r\n" +
-				"";
+				+ "				}";
 				
 	}
 }
