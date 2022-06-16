@@ -3,7 +3,10 @@ import io.restassured.path.json.JsonPath;
 
 import static org.hamcrest.Matchers.*;
 
+import org.testng.Assert;
+
 import files.Payload;
+import files.ReusableMethods;
 
 import static io.restassured.RestAssured.*;
 
@@ -28,6 +31,8 @@ public class Basics2 {
 		 * New Address is present in response
 		 * 
 		 */
+		
+		//here the response we are getting in string format that we are storing in String response var
 		RestAssured.baseURI = "https://rahulshettyacademy.com";
 		String response=given().log().all().queryParam("key", "qaclick123").header("Content-Type", "application/json")
 				.body(Payload.AddPlace())
@@ -36,6 +41,7 @@ public class Basics2 {
 		
 		System.out.println(response);
 		
+		//and this String response var we are parsing it to a json format 
 		//JsonPath is a class which takes string as a input and convert that Json
 		//and it will help to pass the json
 		JsonPath js = new JsonPath(response);
@@ -63,11 +69,13 @@ public class Basics2 {
 		.when().get("maps/api/place/get/json")
 		.then().assertThat().log().all().statusCode(200).extract().response().asString();
 		
-		JsonPath js1 = new JsonPath(getPlaceResponse);
+		JsonPath js1 = ReusableMethods.rawToJson(getPlaceResponse);
 		String actualAddress = js1.getString("address");
 		System.out.println(actualAddress);
 		
 		//compare actualAddress and newAddress value with Assertion
+		
+		Assert.assertEquals(actualAddress,"Pacific Ocean");
 	}
 
 }
