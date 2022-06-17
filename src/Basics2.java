@@ -3,6 +3,10 @@ import io.restassured.path.json.JsonPath;
 
 import static org.hamcrest.Matchers.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.testng.Assert;
 
 import files.Payload;
@@ -12,7 +16,7 @@ import static io.restassured.RestAssured.*;
 
 public class Basics2 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		// validate if ADD Place API is working as expected
 
@@ -35,9 +39,11 @@ public class Basics2 {
 		//here the response we are getting in string format that we are storing in String response var
 		RestAssured.baseURI = "https://rahulshettyacademy.com";
 		String response=given().log().all().queryParam("key", "qaclick123").header("Content-Type", "application/json")
-				.body(Payload.AddPlace())
+				//Bytes are converted into string and content of the json is comin from external file
+				.body(new String(Files.readAllBytes(Paths.get("C:\\Users\\Win\\Documents\\addPlace.json"))))  
 				.when().post("maps/api/place/add/json").then().assertThat().statusCode(200)
-				.body("scope", equalTo("APP")).header("server", "Apache/2.4.41 (Ubuntu)").extract().response().asString();
+				.body("scope", equalTo("APP"))
+				.header("server", "Apache/2.4.41 (Ubuntu)").extract().response().asString();
 		
 		System.out.println(response);
 		
