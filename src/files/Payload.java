@@ -36,7 +36,7 @@ public class Payload {
 	{
 		return "{\r\n"
 				+ "			   \"dashboard\": {\r\n"
-				+ "				    \"purchaseAmount\":910,\r\n"
+				+ "				    \"purchaseAmount\":1405,\r\n"
 				+ "				    \"website\":\"rahulshettyacademy.com\"\r\n"
 				+ "				},\r\n"
 				+ "				\"courses\": [\r\n"
