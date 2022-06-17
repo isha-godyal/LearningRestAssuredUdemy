@@ -8,6 +8,7 @@ public class SumValidation {
 	@Test
 	public void sumOfCourses()
 	{
+		//6. Verify if Sum of all Course prices matches with Purchase Amount
 		int sum=0;
 		JsonPath js = new JsonPath(Payload.CoursePrice());
 		int count = js.getInt("courses.size()");
